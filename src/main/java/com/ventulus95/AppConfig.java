@@ -2,9 +2,9 @@ package com.ventulus95;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Controller;
 
-@ComponentScan
 @Configuration
-public class ApplicationConfig {
-
+@ComponentScan(excludeFilters = @ComponentScan.Filter(Controller.class))
+public class AppConfig {
 }

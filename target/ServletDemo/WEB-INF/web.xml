@@ -3,17 +3,44 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
+
   <display-name>Archetype Created Web Application</display-name>
-  <context-param>
+
+  <!-- 부모를 날려도 밑의 dispatcher가 rootWebapplicationContext로 처리되기 때문에 상관없음.
+ <context-param>
     <param-name>contextClass</param-name>
     <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
   </context-param>
 
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>com.ventulus95.ApplicationConfig</param-value>
+    <param-value>com.ventulus95.AppConfig</param-value>
   </context-param>
 
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  -->
+
+  <servlet>
+    <servlet-name>app</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextClass</param-name>
+      <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+    </init-param>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>com.ventulus95.WebConfig</param-value>
+    </init-param>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>app</servlet-name>
+    <url-pattern>/app/*</url-pattern>
+  </servlet-mapping>
+
+  <!-- 여기는 Context를 활용해서 Spring- IOC를 활용하여 만드는 것.
   <filter>
     <filter-name>myfilter</filter-name>
     <filter-class>com.ventulus95.MyFilter</filter-class>
@@ -23,25 +50,19 @@
     <filter-name>myfilter</filter-name>
     <servlet-name>hello</servlet-name>
   </filter-mapping>
-  
-  <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
-  
-
 
   <servlet>
     <servlet-name>hello</servlet-name>
     <servlet-class>com.ventulus95.helloServlet</servlet-class>
   </servlet>
-  
+
   <servlet-mapping>
     <servlet-name>hello</servlet-name>
     <url-pattern>/hello</url-pattern>
   </servlet-mapping>
-  
+
   <listener>
     <listener-class>com.ventulus95.helloContext</listener-class>
   </listener>
-  
+  -->
 </web-app>
